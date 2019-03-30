@@ -5,7 +5,7 @@
 path to my video: https://youtu.be/SEzT-n0aD_g
 
 
-![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+![video1](http://img.youtube.com/vi/SEzT-n0aD_g/0.jpg)](http://www.youtube.com/watch?v=SEzT-n0aD_g)
 
 
 The goals / steps of this project are the following
@@ -106,8 +106,6 @@ New features:
 2. Smoothening.
    By taking the average fitted polynomial coefficients of 5 previous images, I've managed to make a smooth detection.
    (Still, leaves much room for improvement.)
-
-Here's a [link to my video result](./test_videos_output/project_video_myoutput.mp4)
 
 ---
 
