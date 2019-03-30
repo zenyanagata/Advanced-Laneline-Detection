@@ -2,10 +2,8 @@
 ---
 ### Here I demonstrate the lane-line detection algorithm with non-deep-learning approach.
 
-path to my video: https://youtu.be/SEzT-n0aD_g
 
-
-![video1](http://img.youtube.com/vi/SEzT-n0aD_g/0.jpg)](http://www.youtube.com/watch?v=SEzT-n0aD_g)
+![alt text](http://img.youtube.com/vi/SEzT-n0aD_g/0.jpg)](http://www.youtube.com/watch?v=SEzT-n0aD_g)
 
 
 The goals / steps of this project are the following
@@ -23,11 +21,10 @@ The goals / steps of this project are the following
 
 [image1]: ./output_images/undistort_and_warped.jpg "Undistorted"
 [image2]: ./output_images/undistort_and_crop.png "Road Transformed"
-[image3]: ./output_images/binary_lanedetect.png "Binary Example"
-[image4]: ./output_images/birds_eye_view.png "Warp Example"
-[image5]: ./output_images/sliding_window_and_curvature.png "Fit Visual"
+[image3]: ./output_images/binary_lanedetect.PNG "Binary Example"
+[image4]: ./output_images/birds_eye_view.PNG "Warp Example"
+[image5]: ./output_images/sliding_window_and_curvature.PNG "Fit Visual"
 [image6]: ./output_images/unwarp.png "Output"
-[video1]: ./test_videos_output/project_video_myoutput.mp4 "Video"
 
 Here I will describe step by step of how I implemented the lane detection algorithm. All codes for this project are contained in the IPython notebook located in "./examples/summery.ipynb"
 
