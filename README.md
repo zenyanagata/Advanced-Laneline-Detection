@@ -1,12 +1,14 @@
 # Advanced Lane Finding Project
 ---
+### Here I demonstrate the lane-line detection algorithm with non-deep-learning approach.
 
-<video controls autoplay loop width="520" height="340">
-  <source src="project_video_myoutput.mp4" type="video/mp4">
-  <p>unable to play the video. Try other brawser.</p>
-</video>
+path to my video: https://youtu.be/SEzT-n0aD_g
 
-The goals / steps of this project are the following:
+
+![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+
+
+The goals / steps of this project are the following
 
 * Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
 * Apply a distortion correction to raw images.
@@ -27,31 +29,33 @@ The goals / steps of this project are the following:
 [image6]: ./output_images/unwarp.png "Output"
 [video1]: ./test_videos_output/project_video_myoutput.mp4 "Video"
 
-### Here I will describe step by step of how I implemented the lane detection algorithm. All codes for this project are contained in the IPython notebook located in "./examples/summery.ipynb"
+Here I will describe step by step of how I implemented the lane detection algorithm. All codes for this project are contained in the IPython notebook located in "./examples/summery.ipynb"
 
 ---
 
-### Camera Calibration
+## Camera Calibration
 I used all the 20 images in "./camera_cal" to find each corner of chessboard and created objpoints, imgpoints.
 Next, use cv2.calibrateCamera(objpoints, imgpoints, img_size,None,None) to calibrate all the images and get mtx and dist coefficient so that I can undistort the image using cv2.undistort.
+
 ![alt text][image1]
 
-### Pipeline (single images)
+## Pipeline (single images)
 
-#### 1. Distortion-corrected image.
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
+### 1. Distortion Correction
+To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like the image below.
+
 ![alt text][image2]
 
 First, I used the cv2.undistort to undistort my image (used mtx and dist are already derived by chessboard calibration step).
 And then, get rid of the bottom of the image where the car bumper is. Cope is simple ```crop_undist = undist[:670,:]```.
 
-#### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at function ```binary_detection``` which appears the 4th code cell of the IPython notebook).  Here's an example of my output for this step.
+### 2.Binary Image Creation
+I used a combination of color and gradient thresholds to generate a binary image (thresholding steps defined at function ```binary_detection``` which appears at the 4th code cell of the IPython notebook).  Here's an example of my output for this step.
 
 ![alt text][image3]
 
-I used hls transform before applying sobel matrix instead of gray-scale. This enabled the sobel transform to detect yellow lines and white lines more vividy. I detail, I used "saturation" to detect yellow, and "lightness" to detect white line more precisely (in code it looks like ```grad_combined[ (gradx_l==1) & (grady_l==1) | (gradx_s==1) & (grady_s==1) ] = 1```).
-And then, combined magnitude & direatcion detection as well but here I used half saturation half lightness transform beforehand (the code looks like this```magdir_combined[ (mag_lshalf==1) & (dir_lshalf==1) ] = 1```).
+I used HLS transform before applying sobel matrix instead of gray-scale. This enabled the sobel transform to detect yellow lines and white lines more vividy. In detail, I used "saturation" to detect yellow, and "lightness" to detect white line more precisely (in code it looks like ```grad_combined[ (gradx_l==1) & (grady_l==1) | (gradx_s==1) & (grady_s==1) ] = 1```).
+And then, combined magnitude & direaction detection as well but here I used half saturation half lightness transform beforehand (the code looks like this```magdir_combined[ (mag_lshalf==1) & (dir_lshalf==1) ] = 1```).
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 The code for my perspective transform includes a function called `perspective_transform`, which appears the 5th code cell of the IPython notebook.  This function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
@@ -63,6 +67,7 @@ dst = np.float32([ [320, 0], [960, 0], [960, 670], [320, 670] ])
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 Also, calibration ratio for pixel to meter is desctibed in the following image.
+
 ![alt text][image4]
 
 
@@ -75,6 +80,7 @@ I did some sanity check here as well.
  -->  if not, then line with less detection points are deleted and line with more detection points are drawn horizontially in +- 640 pixel (or 3.7 meters).
 
 The result looks like this.
+
 ![alt text][image5]
 
 
